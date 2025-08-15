@@ -1,4 +1,7 @@
-from django.http import HttpResponse
+from django.shortcuts import render
 
 def inicio(request):
-    return HttpResponse("¡Hola, Emer")
+    contexto = {
+        'nombre': 'Emer'
+    }
+    return render(request, 'MI_BANCO/inicio.html', contexto)

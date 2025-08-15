@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Banco Online</title>
+    <link rel="stylesheet" href="{% static 'MI_BANCO/estilo.css' %}">
+</head>
+<body>
+    <header>
+        <h1>Banco Online</h1>
+    </header>
+    <nav>
+        <a href="#">Inicio</a>
+        <a href="#">Cuentas</a>
+        <a href="#">Transferencias</a>
+        <a href="#">Salir</a>
+    </nav>
+    <div class="container">
+        <h2>Hola, {{ nombre }}</h2>
+        <p>Bienvenido a tu portal bancario.</p>
+    </div>
+</body>
+</html>
