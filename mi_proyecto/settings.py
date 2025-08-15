@@ -101,8 +101,10 @@ USE_TZ = True
 
 
 #Configuracion estaticas
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'mi_banco/static']
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / 'mi_proyecto' / 'static'
+]
 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'

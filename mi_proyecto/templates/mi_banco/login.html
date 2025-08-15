@@ -1,31 +1,31 @@
 {% extends 'mi_banco/base.html' %}
-
+{% load static %}
 {% block content %}
-<div>
-    <h2>Iniciar Sesion</h2>
-    <form method="post">
-        {% csrf_token %}
-        <label for="">Correo</label>
-        <input type="email" name="email" id="email" placeholder="Correo">
-        
-        <label for="">Contraseña</label>
-        <input type="password" name="password" id="password" placeholder="Tu contraseña">
+<div id="login-container">
+    <h2 id="login-title">Iniciar Sesión</h2>
 
-        <button type="submit">Ingresar</button>
+    <form id="login-form" method="post">
+        {% csrf_token %}
+        
+        <label for="login-email">Correo</label>
+        <input type="email" name="email" id="login-email" placeholder="Correo">
+        
+        <label for="login-password">Contraseña</label>
+        <input type="password" name="password" id="login-password" placeholder="Tu contraseña">
+
+        <button id="login-button" type="submit">Ingresar</button>
         
         {% if messages %}
-            <div class="error-container">
-            {% for message in messages %}
-                <p class="error-message">{{ message }}</p>
-            {% endfor %}
+            <div id="error-container">
+                {% for message in messages %}
+                    <p class="error-message">{{ message }}</p>
+                {% endfor %}
             </div>
         {% endif %}
 
-        <p>
-            ¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
+        <p id="register-text">
+            ¿No tienes cuenta? <a id="register-link" href="{% url 'registro' %}">Regístrate aquí</a>
         </p>
     </form>
 </div>
-
-
 {% endblock %}
