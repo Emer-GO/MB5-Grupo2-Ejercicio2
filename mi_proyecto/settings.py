@@ -13,6 +13,9 @@ ALLOWED_HOSTS = []
 
 AUTH_USER_MODEL = 'mi_banco.Usuario'
 
+LOGIN_URL = 'login'
+
+LOGIN_REDIRECT_URL = 'inicio'
 
 # Application definition
 

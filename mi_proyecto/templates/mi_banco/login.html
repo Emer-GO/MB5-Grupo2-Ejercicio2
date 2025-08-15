@@ -6,15 +6,26 @@
     <form method="post">
         {% csrf_token %}
         <label for="">Correo</label>
-        <input type="email" name="" id="" placeholder="Correo">
+        <input type="email" name="email" id="email" placeholder="Correo">
         
         <label for="">Contraseña</label>
-        <input type="password" name="" id="" placeholder="Tu contraseña">
+        <input type="password" name="password" id="password" placeholder="Tu contraseña">
 
         <button type="submit">Ingresar</button>
+        
+        {% if messages %}
+            <div class="error-container">
+            {% for message in messages %}
+                <p class="error-message">{{ message }}</p>
+            {% endfor %}
+            </div>
+        {% endif %}
+
         <p>
             ¿No tienes cuenta? <a href="{% url 'registro' %}">Regístrate aquí</a>
         </p>
     </form>
 </div>
+
+
 {% endblock %}
