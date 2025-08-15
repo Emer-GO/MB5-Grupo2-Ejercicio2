@@ -39,7 +39,8 @@ ROOT_URLCONF = 'mi_proyecto.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-           'DIRS': [BASE_DIR / 'mi_banco/templates'], 
+           'DIRS': [BASE_DIR / 'mi_proyecto/templates'],
+
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
