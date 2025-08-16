@@ -5,6 +5,7 @@ from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.db import transaction as db_transaction
 from django.contrib import messages
+from django.views.decorators.cache import never_cache
 import requests
 import os
 from dotenv import load_dotenv
@@ -60,6 +61,7 @@ def user_logout_view(request):
     return redirect('core_bank:login')
 
 @login_required
+@never_cache
 def dashboard_view(request):
     user = request.user
     recent_transactions = Transaction.objects.filter(sender=user).order_by('-timestamp')[:5]
@@ -72,6 +74,7 @@ def dashboard_view(request):
     })
 
 @login_required
+@never_cache
 def transfer_view(request):
     user = request.user
     form = TransferForm()
@@ -126,6 +129,7 @@ def transfer_view(request):
     return render(request, 'core_bank/transfer.html', {'form': form})
 
 @login_required
+@never_cache
 def services_view(request):
     services = Service.objects.all()
     form = ServicePaymentForm()
@@ -188,6 +192,7 @@ def services_view(request):
 
 
 @login_required
+@never_cache
 def history_view(request):
     user = request.user
     transactions = Transaction.objects.filter(sender=user).order_by('-timestamp')
