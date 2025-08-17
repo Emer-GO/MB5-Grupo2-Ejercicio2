@@ -9,10 +9,13 @@
             <h2 class="text-3xl font-bold text-gray-800 mb-4">Bienvenido, {{ user.first_name }} {{ user.last_name }}</h2>
             <p class="text-lg text-gray-600 mb-2">Usuario: <span class="font-semibold text-gray-700">{{ user.username }}</span></p>
             <p class="text-lg text-gray-600 mb-4">DNI: <span class="font-semibold text-gray-700">{{ user.dni }}</span></p>
+            
+            
             <div class="bg-blue-100 p-4 rounded-lg flex items-center justify-between shadow-inner">
-                <span class="text-2xl font-bold text-blue-800">Saldo Disponible:</span>
-                <span class="text-4xl font-extrabold text-blue-800">S/ {{ user.balance|floatformat:2 }}</span>
-            </div>
+    <span class="text-2xl font-bold" style="color:#0a2472;">Saldo Disponible:</span>
+    <span class="text-4xl font-extrabold" style="color:#0a2472;">S/ {{ user.balance|floatformat:2 }}</span>
+</div>
+
         </div>
 
         <div class="card p-6 shadow-md border-b-4 border-green-500">
@@ -42,12 +45,12 @@
 
     <div class="w-full lg:w-1/2 flex flex-col gap-6">
         <div class="card p-6 shadow-md border-b-4 border-yellow-500">
-            <h3 class="text-2xl font-bold text-gray-800 mb-4">Actividad Reciente</h3>
+            <h3 class="text-2xl font-bold text-black-800 mb-4">Actividad Reciente</h3>
             <div class="overflow-x-auto">
                 {% if recent_transactions or recent_payments %}
                     <table class="table-auto w-full text-left">
                         <thead>
-                            <tr class="bg-gray-100 text-gray-700 uppercase text-sm leading-normal">
+                            <tr class="bg-white-100 text-white-700 uppercase text-sm leading-normal">
                                 <th class="py-3 px-6">Tipo</th>
                                 <th class="py-3 px-6">Detalle</th>
                                 <th class="py-3 px-6">Monto</th>

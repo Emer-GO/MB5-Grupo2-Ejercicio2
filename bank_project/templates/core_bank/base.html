@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,24 +8,120 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+
+    <script>
+        if (localStorage.getItem('darkMode') === 'enabled') {
+            document.documentElement.classList.add('dark');
+        }
+    </script>
+
     <style>
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f3f4f6; /* Gris claro */
+            background-color: #f3f4f6;
+            /* Gris claro */
             color: #333;
+            transition: background-color 0.3s ease, color 0.3s ease;
         }
+
+        html.dark body {
+            background-color: #0f172a;
+            /* gris azulado profundo */
+            color: #e5e7eb;
+            /* gris claro */
+        }
+
+        .dark .navbar a {
+            color: #e5e7eb;
+        }
+
+        .dark .navbar a:hover {
+            background-color: #1e3a8a;
+            /* azul más vivo al pasar el mouse */
+        }
+
+        /* Tarjetas más visibles en modo oscuro */
+        .dark .card {
+            background-color: #1e293b;
+            /* gris intermedio */
+            color: #e5e7eb;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 2px 8px rgba(255, 255, 255, 0.05);
+        }
+
+        /* Botones primarios con azul brillante */
+        .dark .btn-primary {
+            background-color: #2563eb;
+            color: #f9fafb;
+        }
+
+        .dark .btn-primary:hover {
+            background-color: #3b82f6;
+        }
+
+        /* Textos secundarios */
+        .dark p,
+        .dark h1,
+        .dark label,
+        .dark h2,
+        .dark h3,
+        .dark li {
+            color: #ffffff;
+        }
+
+        .dark span {
+            color: #ffffff;
+        }
+
+        .dark table * {
+            color: #ffffff;
+            background-color: #1f2937;
+        }
+
+        .dark thead * {
+            color: #ffffff;
+            background-color: #0f172a;
+        }
+        .dark ul * {
+            color: gray(600);
+        }
+        
+        /* Enlaces dentro de textos */
+        .dark a {
+            color: #60a5fa;
+        }
+        
+        .dark a:hover {
+            text-decoration: underline;
+        }
+
         .navbar {
-            background-color: #3b82f6; /* Azul de Tailwind 500 */
+            background-color: #3b82f6;
+            /* Azul Tailwind 500 */
+            transition: background-color 0.3s ease;
         }
+
+        .dark .navbar {
+            background-color: #040c18;
+            /* gris Tailwind 800 */
+        }
+
+        .dark tr {
+            background-color: #040c18;
+            /* gris Tailwind 800 */
+        }
+
         .navbar a {
             color: white;
             padding: 0.5rem 1rem;
             border-radius: 0.5rem;
             transition: background-color 0.3s ease;
         }
+
         .navbar a:hover {
-            background-color: #2563eb; /* Azul de Tailwind 600 */
+            background-color: #2563eb;
         }
+
         .btn-primary {
             background-color: #3b82f6;
             color: white;
@@ -32,64 +129,141 @@
             border-radius: 0.75rem;
             transition: background-color 0.3s ease;
         }
+
         .btn-primary:hover {
             background-color: #2563eb;
         }
+
+        .dark .btn-primary {
+            background-color: #2563eb;
+        }
+
         .card {
-            background-color: white;
+            background-color: rgb(255, 255, 255);
             border-radius: 1rem;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
             padding: 1.5rem;
+            transition: background-color 0.3s ease;
         }
+
+        .dark .card {
+            background-color: #1f2937;
+            color: #000000;
+        }
+
         /* Estilos para messages de Django */
         .messages {
             list-style: none;
             padding: 0;
             margin-bottom: 1rem;
         }
+
         .messages li {
             padding: 0.75rem 1rem;
             border-radius: 0.5rem;
             margin-bottom: 0.5rem;
             font-weight: 500;
         }
+
         .messages .success {
-            background-color: #d1fae5; /* Verde claro */
-            color: #065f46; /* Verde oscuro */
+            background-color: #d1fae5;
+            color: #065f46;
             border: 1px solid #34d399;
         }
+
         .messages .error {
-            background-color: #fee2e2; /* Rojo claro */
-            color: #991b1b; /* Rojo oscuro */
+            background-color: #fee2e2;
+            color: #991b1b;
             border: 1px solid #ef4444;
         }
+
         .messages .info {
-            background-color: #e0f2fe; /* Azul claro */
-            color: #0c4a6e; /* Azul oscuro */
+            background-color: #e0f2fe;
+            color: #0c4a6e;
             border: 1px solid #60a5fa;
         }
+
         .messages .warning {
-            background-color: #fffbeb; /* Amarillo claro */
-            color: #92400e; /* Amarillo oscuro */
+            background-color: #fffbeb;
+            color: #92400e;
             border: 1px solid #fbbf24;
+        }
+
+        /* Switch toggle */
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 48px;
+            height: 24px;
+        }
+
+        .switch input {
+            display: none;
+        }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .3s;
+            border-radius: 24px;
+        }
+
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: .3s;
+            border-radius: 50%;
+        }
+
+        input:checked+.slider {
+            background-color: #3b82f6;
+        }
+
+        input:checked+.slider:before {
+            transform: translateX(24px);
         }
     </style>
 </head>
+
 <body class="min-h-screen flex flex-col">
+
     <nav class="navbar p-4 shadow-lg">
+
         <div class="container mx-auto flex justify-between items-center">
-            <a href="{% url 'core_bank:dashboard' %}" class="text-2xl font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition duration-300">BankApp</a>
+            <a href="{% url 'core_bank:dashboard' %}"
+                class="text-2xl font-bold rounded-lg px-4 py-2 hover:bg-blue-600 transition duration-300">BankApp <img
+                    src="https://img.icons8.com/?size=29&id=hPaKbJzZRS9T&format=png&color=ffffff" alt=""></a>
             <div class="flex space-x-4 items-center">
+                <img src="https://img.icons8.com/?size=29&id=EWXLJBR0k8Tm&format=png&color=ffffff" alt="">
+
+                <label class="switch">
+                    <input type="checkbox" id="darkModeToggle">
+                    <span class="slider"></span>
+                </label>
+                <img src="https://img.icons8.com/?size=29&id=Pj1pRLOg6wrQ&format=png&color=ffffff" alt="">
+
                 {% if user.is_authenticated %}
-                    <span class="text-white text-lg hidden md:block">¡Hola, {{ user.first_name }}!</span>
-                    <a href="{% url 'core_bank:dashboard' %}" class="hover:bg-blue-600">Dashboard</a>
-                    <a href="{% url 'core_bank:transfer' %}" class="hover:bg-blue-600">Transferir</a>
-                    <a href="{% url 'core_bank:services' %}" class="hover:bg-blue-600">Pagar Servicios</a>
-                    <a href="{% url 'core_bank:history' %}" class="hover:bg-blue-600">Historial</a>
-                    <a href="{% url 'core_bank:logout' %}" class="hover:bg-red-600 bg-red-500 rounded-lg px-3 py-1">Cerrar Sesión</a>
+                <span class="text-white text-lg hidden md:block">¡Hola, {{ user.first_name }}!</span>
+                <a href="{% url 'core_bank:dashboard' %}" class="hover:bg-blue-600">Dashboard</a>
+                <a href="{% url 'core_bank:transfer' %}" class="hover:bg-blue-600">Transferir</a>
+                <a href="{% url 'core_bank:services' %}" class="hover:bg-blue-600">Pagar Servicios</a>
+                <a href="{% url 'core_bank:history' %}" class="hover:bg-blue-600">Historial</a>
+                <a href="{% url 'core_bank:logout' %}"
+                    class="hover:bg-red-600 bg-red-500 rounded-lg px-3 py-1">Cerrar
+                    Sesión</a>
                 {% else %}
-                    <a href="{% url 'core_bank:login' %}" class="hover:bg-blue-600">Iniciar Sesión</a>
-                    <a href="{% url 'core_bank:register' %}" class="hover:bg-blue-600">Registrarse</a>
+                <a href="{% url 'core_bank:login' %}" class="hover:bg-blue-600">Iniciar Sesión</a>
+                <a href="{% url 'core_bank:register' %}" class="hover:bg-blue-600">Registrarse</a>
                 {% endif %}
             </div>
         </div>
@@ -97,13 +271,11 @@
 
     <main class="container mx-auto px-4 py-8 flex-grow">
         {% if messages %}
-            <ul class="messages">
-                {% for message in messages %}
-                    <li{% if message.tags %} class="{{ message.tags }} text-center"{% endif %}>
-                        {{ message }}
-                    </li>
+        <ul class="messages">
+            {% for message in messages %}
+            <li{% if message.tags %} class="{{ message.tags }} text-center" {% endif %}>{{ message }}</li>
                 {% endfor %}
-            </ul>
+        </ul>
         {% endif %}
         {% block content %}{% endblock %}
     </main>
@@ -113,6 +285,29 @@
             &copy; 2025 BankApp. Todos los derechos reservados.
         </div>
     </footer>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const toggle = document.getElementById('darkModeToggle');
+            const html = document.documentElement;
+
+            // Cargar preferencia guardada
+            if (localStorage.getItem('darkMode') === 'enabled') {
+                toggle.checked = true;
+            }
+
+            toggle.addEventListener('change', () => {
+                if (toggle.checked) {
+                    html.classList.add('dark');
+                    localStorage.setItem('darkMode', 'enabled');
+                } else {
+                    html.classList.remove('dark');
+                    localStorage.setItem('darkMode', 'disabled');
+                }
+            });
+        });
+    </script>
 </body>
+
 </html>
